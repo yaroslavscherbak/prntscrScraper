@@ -33,6 +33,7 @@ def scrapePictures():
         printsc = "http://i.imgur.com/" + name + ".jpg"
         jpg_name = "%s/%s.jpg" % (img_dir, name)
         png_name = "%s/%s.png" % (img_dir, name)
+        gif_name = "%s/%s.gif" % (img_dir, name)
 
         urllib.urlretrieve(printsc, jpg_name)
 
@@ -47,6 +48,9 @@ def scrapePictures():
             if bytes(flines[0]) == '\x89PNG':
                 os.rename(jpg_name, png_name)
                 print "[+] Valid: " + png_name
+            elif flines[0].startswith('GIF89'):
+                os.rename(jpg_name, gif_name)
+                print "[+] Valid: " + gif_name
             else:
                 print "[+] Valid: " + jpg_name
 
