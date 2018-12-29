@@ -10,6 +10,11 @@ temp = 0
 #while temp < 10:
 
 noneWorking = [0, 503, 4939, 4940, 4941, 12003, 5556]
+img_dir = "images"
+
+
+if not os.path.exists(img_dir):
+    os.makedirs(img_dir)
 
 
 def scrapePictures():
@@ -26,8 +31,8 @@ def scrapePictures():
         picture = str(''.join(random.choice(string.ascii_uppercase + string.digits + string.lowercase) for _ in range(N)))
         name = str(picture) + str(picture2)
         printsc = "http://i.imgur.com/" + name + ".jpg"
-        jpg_name = "images/%s.jpg" % name
-        png_name = "images/%s.png" % name
+        jpg_name = "%s/%s.jpg" % (img_dir, name)
+        png_name = "%s/%s.png" % (img_dir, name)
 
         urllib.urlretrieve(printsc, jpg_name)
 
